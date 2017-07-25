@@ -1,8 +1,9 @@
 #ifndef FDF_H
 
-# include "../libft/libft.h"
+# include "./libft/libft.h"
 # include <fcntl.h>
-# include "../Sources/minilibx_macos/mlx.h"
+# include <math.h>
+# include "./minilibx_macos/mlx.h"
 
 # define FDF_H
 
@@ -18,22 +19,26 @@
 # define UP		125
 # define DOWN		126
 
-typedef struct		s_stor // parse and tab creation
+typedef struct			s_stor // parse and tab creation
 {
-	int nb_w;
-	int len;
-	int **tab;
-}			t_stor;
+	int		nb_w;
+	int		len;
+	int		**tab;
+	int		x0;
+	int		y0;
+	int		x1;
+	int		y1;
+}				t_stor;
 
-typedef struct		s_server // necessary mlx
+typedef struct			s_server // necessary mlx
 {
-	void	*mlx;
-	void	*win;
+	void		*mlx;
+	void		*win;
 	int		keycode;
 	int		color;
 	int		x;
 	int		y;
-}					t_server;
+}				t_server;
 
 
 #endif
