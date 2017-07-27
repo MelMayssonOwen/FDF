@@ -29,18 +29,23 @@ void		drawline(t_stor *stor, t_server *s)
 
 void	magic_happens(t_stor *stor, t_server *s)
 {
-    int z;
-    int y;
-
-    z = 0;
-    y = 0;
-    while (z < (stor->len - 1))
+    int tx;
+    int ty;
+    stor->x0 = stor->x1;
+    stor->y0 = stor->y1;
+    ty = 0;
+    while (ty < stor->len)
     {
-	if (stor->tab[z][y + 1] && stor->tab[z + 1] != '\0')
+    	tx = 0;
+    	while (tx < stor->nb_w)
 	{
-	    stor->x0 = stor->tab[z][y];
+	    stor->x1 += 10;
+	    stor->y1 += 10;
+	    stor->y1 += stor->tab[tx][ty];
+	    tx++;
+	    drawline(stor, s);
 	}
-	z++;
+	ty++;
     }
 }
 
@@ -132,6 +137,8 @@ int		main(int ac, char **av)
     //aff_tab(stor);
     s->mlx = mlx_init();
     s->win = mlx_new_window(s->mlx, 1000, 1000, "FDF");
+    stor->x1 = 100;
+    stor->y1 = 100;
     mlx_key_hook(s->win, my_key_funct, s);
     magic_happens(stor, s);
     mlx_loop(s->mlx);
