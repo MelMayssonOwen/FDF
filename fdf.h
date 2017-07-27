@@ -33,6 +33,7 @@ typedef struct			s_stor // parse and tab creation
 
 typedef struct			s_server // necessary mlx
 {
+	int			iter;
 	void		*mlx;
 	void		*win;
 	int			keycode;

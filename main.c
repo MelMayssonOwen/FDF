@@ -65,15 +65,37 @@ void	placedots(t_stor *stor, t_server *s)
 {
 	int tx;
 	int ty;
+	int decx;
 
+	decx = 400;
 	tx = 0;
 	ty = 0;
-while 
+	s->y = 400;
+	while(ty++ < stor->len)
+	{
+		decx-=s->iter;
+		s->x = decx;
+		tx = 0;
+		while (tx++ < stor->nb_w)
+		{
+			s->x+=s->iter;
+			s->y+=s->iter;
+			mlx_pixel_put(s->mlx, s->win, s->x, (s->y+stor->tab[tx-1][ty-1])^2, COLOR);
+		}
+	}
 }
+
 int	my_key_funct(int keycode, t_server	*s)//return a value with keycode blablabla
 {
 	if (keycode == 53)
 		exit(1);
+	else if (keycode == 24 || keycode == 69)
+	{
+		s->iter+=10;
+	}
+	else if (keycode == 27 || keycode == 78)
+		s->iter-=10;
+	printf("keycode : %d\n", keycode);
 	s->x = 0;
 	keycode = 0;
 	return (0);
@@ -93,6 +115,7 @@ void		size_that_file(char **av, t_stor *stor) //give size and basic errors
 		else if (stor->nb_w != ft_count_words(line, 32))
 			ft_putnerror("file not square");
 		stor->len++;
+		free(line);
 	}
 	if (close(fd) != 0)
 		ft_putnerror("file didn't close properly");
@@ -161,8 +184,10 @@ int		main(int ac, char **av)
 	s->win = mlx_new_window(s->mlx, 1000, 1000, "FDF");
 	stor->x1 = 100;
 	stor->y1 = 100;
+	s->iter = 10;
 	mlx_key_hook(s->win, my_key_funct, s);
-	magic_happens(stor, s);
+	placedots(stor, s);
+//	magic_happens(stor, s);
 	mlx_loop(s->mlx);
 	return (0);
 }
