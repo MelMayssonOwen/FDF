@@ -20,39 +20,61 @@ void		drawline(t_stor *stor, t_server *s)
 	dy /= tmp;
 	while (tmp >= 0)
 	{
-		mlx_pixel_put(s->mlx, s->win, x, y, 0x00AAAAAA);
+		mlx_pixel_put(s->mlx, s->win, x, y, COLOR);
 		x += dx;
 		y += dy;
-		tmp -= 1;
+		tmp--;
 	}
+}
+/*
+void	draw_vertical(t_stor *stor, t_server *s)
+{
+	int tx;
+	int ty;
+
+	tx = 0;
+	ty = 0;
+	while ()
 }
 
 void	magic_happens(t_stor *stor, t_server *s)
 {
+	
 	int tx;
 	int ty;
-	stor->x0 = stor->x1;
-	stor->y0 = stor->y1;
 	ty = 0;
 	while (ty < stor->len)
 	{
 		tx = 0;
 		while (tx < stor->nb_w)
 		{
+	stor->x0 = stor->x1;
+	stor->y0 = stor->y1;
 			stor->x1 += 10;
 			stor->y1 += 10;
-			stor->y1 += stor->tab[tx][ty];
+			//stor->y1 += stor->tab[tx][ty];
 			tx++;
 			drawline(stor, s);
 		}
 		ty++;
 	}
 }
+*/
 
+void	placedots(t_stor *stor, t_server *s)
+{
+	int tx;
+	int ty;
+
+	tx = 0;
+	ty = 0;
+while 
+}
 int	my_key_funct(int keycode, t_server	*s)//return a value with keycode blablabla
 {
 	if (keycode == 53)
 		exit(1);
+	s->x = 0;
 	keycode = 0;
 	return (0);
 }
