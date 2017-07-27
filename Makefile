@@ -6,7 +6,7 @@
 #    By: ppoursaf <ppoursaf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/07 06:03:49 by ppoursaf          #+#    #+#              #
-#    Updated: 2017/07/25 19:35:10 by mowen            ###   ########.fr        #
+#    Updated: 2017/07/27 13:49:04 by mowen            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ SRC_PATH = ./libft/
 MINILIBX_PATH = ./minilibx_macos
 
 SRCS_FDF = main.c
-FLAGS =  -framework OpenGL -framework AppKit
+FLAGS =  -framework OpenGL -framework AppKit -Wall -Werror -Wextra
 
 all: $(NAME)
 
@@ -34,7 +34,7 @@ $(NAME):
 	@echo "|                                            |"
 	@echo "|                                            |"
 	@echo "|____________________________________________|"
-	@make -C $(MINILIBX_PATH) > /dev/null
+	@make -C $(MINILIBX_PATH)
 	@sleep 1
 	@echo " ____________________________________________ "
 	@echo "|                                            |"
@@ -47,7 +47,7 @@ $(NAME):
 	@echo "|               ________________             |"
 	@echo "|                                            |"
 	@echo "|____________________________________________|"
-	@make -C $(SRC_PATH) > /dev/null
+	@make -C $(SRC_PATH)
 	@echo " ____________________________________________ "
 	@echo "|                                            |"
 	@echo "|                     FDF                    |"
@@ -59,7 +59,7 @@ $(NAME):
 	@echo "|               ________________             |"
 	@echo "|           ________________________         |"
 	@echo "|____________________________________________|"
-	@gcc  -o $(NAME) $(FLAGS) ./minilibx_macos/libmlx.a ./libft/libft.a $(SRCS_FDF) > /dev/null
+	@gcc  -o $(NAME) $(FLAGS) ./minilibx_macos/libmlx.a ./libft/libft.a $(SRCS_FDF)
 	@sleep 1
 	@echo " ____________________________________________ "
 	@echo "| _______        ____________        _______ |"
