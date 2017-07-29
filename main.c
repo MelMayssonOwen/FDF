@@ -93,14 +93,14 @@ void	placedots(t_stor *stor, t_server *s)
 	    while (tx < stor->nb_w)
 	    {
 	    	printf("x loop [%d] %d   x = %d, y = %d\n", i, j++, x, y);
-	    	mlx_pixel_put(s->mlx, s->win, x, y+(stor->tab[ty][tx]*4), COLOR);
-	    	x+=10;
+	    	mlx_pixel_put(s->mlx, s->win, x, y-(stor->tab[ty][tx]*10), COLOR);
+	    	x+=20;
 	    	y-=10;
 	    	tx++;
 	    }
-	    start_y += 10;
+	    start_y += 14;
 	    y = start_y;
-	    start_x += 10;
+	    start_x += 14;
 	    x = start_x;
 	    ty++;
 	}
