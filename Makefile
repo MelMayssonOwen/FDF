@@ -34,7 +34,8 @@ $(NAME):
 	@echo "|                                            |"
 	@echo "|                                            |"
 	@echo "|____________________________________________|"
-	@make -C $(MINILIBX_PATH)
+	@make -C $(MINILIBX_PATH) > /dev/null
+	@clear
 	@sleep 1
 	@echo " ____________________________________________ "
 	@echo "|                                            |"
@@ -47,7 +48,8 @@ $(NAME):
 	@echo "|               ________________             |"
 	@echo "|                                            |"
 	@echo "|____________________________________________|"
-	@make -C $(SRC_PATH)
+	@make -C $(SRC_PATH) > /dev/null
+	@clear
 	@echo " ____________________________________________ "
 	@echo "|                                            |"
 	@echo "|                     FDF                    |"
@@ -59,7 +61,8 @@ $(NAME):
 	@echo "|               ________________             |"
 	@echo "|           ________________________         |"
 	@echo "|____________________________________________|"
-	@gcc  -o $(NAME) $(FLAGS) ./minilibx_macos/libmlx.a ./libft/libft.a $(SRCS_FDF)
+	@gcc  -o $(NAME) $(FLAGS) ./minilibx_macos/libmlx.a ./libft/libft.a $(SRCS_FDF) > /dev/null
+	@clear
 	@sleep 1
 	@echo " ____________________________________________ "
 	@echo "| _______        ____________        _______ |"

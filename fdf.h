@@ -7,7 +7,8 @@
 
 # define FDF_H
 
-# define GRID_SIZE	40
+# define GRID_SIZE	10
+# define HEIGHT_COEF	2
 
 # define COLOR		0x00FFFFFF
 # define RED		0x00FF0000
@@ -17,7 +18,7 @@
 
 # define LEFT		123
 # define RIGHT		124
-# define UP			125
+# define UP		125
 # define DOWN		126
 
 typedef struct			s_stor // parse and tab creation
