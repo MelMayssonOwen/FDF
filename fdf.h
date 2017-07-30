@@ -21,7 +21,7 @@
 # define UP		125
 # define DOWN		126
 
-typedef struct			s_stor // parse and tab creation
+typedef struct				s_stor // parse and tab creation
 {
 	int			nb_w;
 	int			len;
@@ -30,18 +30,19 @@ typedef struct			s_stor // parse and tab creation
 	int			y0;
 	int			x1;
 	int			y1;
-}						t_stor;
-
-typedef struct			s_server // necessary mlx
-{
+	int			start_x;
+	int			start_y;
+	int			x_var;
+	int			y_var;
+	int			z;
 	int			iter;
-	void		*mlx;
-	void		*win;
 	int			keycode;
 	int			color;
 	int			x;
 	int			y;
-}						t_server;
+	void			*mlx;
+	void			*win;
+}					t_stor;//
 
 
 #endif
