@@ -6,52 +6,116 @@
 /*   By: mowen <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:40:48 by mowen             #+#    #+#             */
-/*   Updated: 2017/07/08 13:06:51 by mowen            ###   ########.fr       */
+/*   Updated: 2017/08/01 02:58:30 by mowen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-/*
-   void		draw(t_stor *stor)
-   {
 
-   }
-   */
-static void		drawline(int x0, int y0, int x1, int y1, t_server *s)
+
+void	params_first(t_stor *s)
 {
-	int dx, dy, p, x, y;
+	s->realstart_x = 400;
+	s->realstart_y = 400;
+	s->x_var = 20;
+	s->y_var = 10;
+	s->z = 2;
+}
 
-	dx = x1 - x0;
-	dy = y1 - y0;
+void	params_line(t_stor *s)
+{
+	s->tmpstart_x = s->realstart_x + s->x_var;
+	s->tmpstart_y = s->realstart_y - s->y_var;
+	s->x0 = s->tmpstart_x;
+	s->y0 = s->tmpstart_y;
+}
 
-	x = x0;
-	y = y0;
 
-	p = 2 * dy - dx;
+void	line(t_stor *s)
+{
+	int tx;
+	int ty;
 
-	while(x < x1)
+	ty = 0;
+	while (ty < s->len)
 	{
-		if(p >= 0)
+		s->tmpstart_x -= s->x_var;
+		s->tmpstart_y += s->y_var;
+
+		s->x0 = s->tmpstart_x;
+		s->y0 = s->tmpstart_y;
+		s->y2 = s->tmpstart_y + s->tab[ty][tx];
+		tx = 0;
+		while (tx < s->nb_w - 1)
 		{
-			mlx_pixel_put(s->mlx, s->win, x, y, s->color);
-			y = y + 1;
-			p = p + 2 * dy - 2 * dx;
+			s->x1 = s->x0 + s->x_var;
+			s->y1 = s->y0 + s->y_var;
+			s->y3 = s->y0 + s->y_var - (s->tab[ty][tx + 1] * s->z);
+			drawline(s);
+			s->x0 = s->x1;
+			s->y0 = s->y1;
+			s->y2 = s->y3;
+			tx++;
 		}
-		else
-		{
-			mlx_pixel_put(s->mlx, s->win, x, y, s->color);
-			p = p + 2 * dy;
-		}
-		x = x + 1;
+		ty++;
 	}
 }
-int	my_key_funct(int keycode, t_server	*s)//return a value with keycode blablabla
+
+void	params_column(t_stor *s)
 {
-	if (keycode == 53)
-		exit(1);
-	keycode = 0;
-	return (0);
+	s->tmpstart_x = s->realstart_x - s->x_var;
+	s->tmpstart_y = s->realstart_y - s->y_var;
+	s->x0 = s->realstart_x;
+	s->y0 = s->realstart_y;
+}
+
+void	column(t_stor *s)
+{
+	int tx;
+	int ty;
+
+	tx = 0;
+	while (tx < s->nb_w)
+	{
+		s->tmpstart_x += s->x_var;
+		s->tmpstart_y += s->y_var;
+		s->x0 = s->tmpstart_x;
+		s->y0 = s->tmpstart_y;
+		ty = 0;
+		while (ty < s->len - 1)
+		{
+			s->x1 = s->x0 - s->x_var;
+			s->y1 = s->y0 + s->y_var;
+			drawline(s);
+			s->x0 = s->x1;
+			s->y0 = s->y1;
+			ty++;
+		}
+		tx++;
+	}
 }
 
 
+int	main(int ac, char **av)
+{
+	t_stor *s;
+
+	s = malloc(sizeof(t_stor));
+	s->nb_w = 0;
+	s->len = 0;
+	if (ac != 2)
+		ft_putnerror("wrong number of files");
+	size_file(av, s);
+	create_tab(av, s);
+	s->mlx = mlx_init();
+	s->win = mlx_new_window(s->mlx, 1000, 800, "FDF");
+	params_first(s);
+	params_line(s);
+	line(s);
+	params_column(s);
+	column(s);
+	mlx_key_hook(s->win, my_key_funct, s);
+	mlx_loop(s->mlx);
+	return (0);
+}

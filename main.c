@@ -6,7 +6,7 @@
 /*   By: mowen <mowen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 13:28:31 by mowen             #+#    #+#             */
-/*   Updated: 2017/07/30 23:31:01 by mowen            ###   ########.fr       */
+/*   Updated: 2017/08/01 00:29:09 by mowen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,10 +124,51 @@ void	placedots(t_stor *stor)
 	}
 }
 
+void	vertical(t_stor *stor)
+{
+	int ty;
+	int tx;
+
+	int i;
+
+	i = 0;
+	ty = 0;
+	tx = 0;
+	while (tx < stor->nb_w)
+	{
+		int j;
+		j = 1;
+		printf("y loop %d\n", i++);
+		
+		
+		ty = 0;
+		while (ty < stor->len)
+		{
+			printf("x loop [%d] %d x0 = %d, y0 = %d  x1 = %d, y1 = %d\n", i, j++, \
+					stor->x0, stor->y0, stor->x1, stor->y1);
+		
+			drawline(stor);
+			stor->x0 -= stor->x_var;
+			stor->y0 += stor->y_var;
+			stor->x1 -= stor->x_var;
+			stor->y1 += stor->y_var;
+			ty++;
+		}
+		stor->start_y += stor->y_var;
+		stor->start_x += stor->x_var;
+		stor->x0 = stor->start_x;
+		stor->y0 = stor->start_y;
+		stor->x1 = stor->start_x + stor->x_var;
+		stor->y1 = stor->start_y + stor->y_var;
+		tx++;
+
+	}
+}
+
 void	horizontal(t_stor *stor)
 {
-	int tx;
 	int ty;
+	int tx;
 
 	int i;
 
@@ -136,25 +177,25 @@ void	horizontal(t_stor *stor)
 	ty = 0;
 	tx = 0;
 	stor->x0 = stor->start_x;
-//	stor->y0 = stor->start_y;
-			stor->y0 -= stor->y_var + (stor->tab[ty][tx]);
+	stor->y0 = stor->start_y;
+		//	stor->y0 -= stor->y_var + (stor->tab[ty][tx]);
 	stor->x1 = stor->start_x + stor->x_var;
-			stor->y1 -= stor->y_var + (stor->tab[ty][tx+1]);
-//	stor->y1 = stor->start_y + stor->y_var;
+		//	stor->y1 += stor->y_var + (stor->tab[ty][tx]);
+	stor->y1 = stor->start_y + stor->y_var;
 	while (ty < stor->len)
 	{
 		printf("y loop %d\n", i++);
 		tx = 0;
 			int j = 1;
-		while (tx < stor->nb_w)
+			while (tx < stor->nb_w)
 		{
 			printf("x loop [%d] %d x0 = %d, y0 = %d  x1 = %d, y1 = %d\n", i, j++, \
 					stor->x0, stor->y0, stor->x1, stor->y1);
 			drawline(stor);
 			stor->x0 += stor->x_var;
-			stor->y0 -= stor->y_var + (stor->tab[ty][tx]);
+			stor->y0 -= stor->y_var;
 			stor->x1 += stor->x_var;
-			stor->y1 -= stor->y_var + (stor->tab[ty][tx+1]);
+			stor->y1 -= stor->y_var;
 			tx++;
 		}
 		stor->start_y += stor->y_var;
@@ -304,6 +345,8 @@ int		main(int ac, char **av)
 	stor->y_var = 10;
 	//placedots(stor);//first lunch with start params
 	horizontal(stor);
+	params(stor);// params to start
+	vertical(stor);
 	mlx_key_hook(stor->win, my_key_funct, stor);// movements clear and placedots again
 	ruler(stor);
 	//magic_happens(stor);

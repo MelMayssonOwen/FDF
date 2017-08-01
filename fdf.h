@@ -21,15 +21,22 @@
 # define UP		125
 # define DOWN		126
 
+
 typedef struct				s_stor // parse and tab creation
 {
 	int			nb_w;
 	int			len;
 	int			**tab;
+	int			realstart_x;
+	int			realstart_y;
+	int			tmpstart_x;
+	int			tmpstart_y;
 	int			x0;
 	int			y0;
 	int			x1;
 	int			y1;
+	int			y2;
+	int			y3;
 	int			start_x;
 	int			start_y;
 	int			x_var;
@@ -44,5 +51,11 @@ typedef struct				s_stor // parse and tab creation
 	void			*win;
 }					t_stor;//
 
+int		my_key_funct(int keycode, t_stor *stor);
+void		drawline(t_stor *s);
+void		clear_win(t_stor *s);
+void		size_file(char **av, t_stor *s);
+void		aff_tab(t_stor *s);
+void		create_tab(char **av, t_stor *s);
 
 #endif
