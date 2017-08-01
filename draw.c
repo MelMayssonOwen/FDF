@@ -6,13 +6,13 @@
 /*   By: mowen <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:40:48 by mowen             #+#    #+#             */
-/*   Updated: 2017/08/01 13:35:55 by mowen            ###   ########.fr       */
+/*   Updated: 2017/08/01 21:09:39 by mowen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-
+# include "stdio.h"
 
 void	params_first(t_stor *s)
 {
@@ -39,13 +39,13 @@ void	line(t_stor *s)
 	{
 		s->tmpstart_x -= s->x_var;
 		s->tmpstart_y += s->y_var;
-
 		s->x0 = s->tmpstart_x;
 		s->y0 = s->tmpstart_y;
 		s->y2 = s->tmpstart_y + s->tab[s->ty][s->tx];
 		s->tx = 0;
-		while (s->tx < s->nb_w - 1)
+		while (s->tx < s->nb_w -1)
 		{
+			printf("s->tx %d\n", s->tx);
 			s->x1 = s->x0 + s->x_var;
 			s->y1 = s->y0 + s->y_var;
 			s->y3 = s->y0 + s->y_var - (s->tab[s->ty][s->tx+1] * s->z);
@@ -74,11 +74,11 @@ void	column(t_stor *s)
 	{
 		s->tmpstart_x += s->x_var;
 		s->tmpstart_y += s->y_var;
-		s->y2 = s->tmpstart_y + s->tab[s->ty-1][s->tx];
 		s->x0 = s->tmpstart_x;
 		s->y0 = s->tmpstart_y;
+		s->y2 = s->tmpstart_y + s->tab[s->ty-1][s->tx];
 		s->ty = 0;
-		while (s->ty < s->len - 1)
+		while (s->ty < s->len -1)
 		{
 			s->x1 = s->x0 - s->x_var;
 			s->y1 = s->y0 + s->y_var;

@@ -6,7 +6,7 @@
 /*   By: mowen <mowen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 13:28:31 by mowen             #+#    #+#             */
-/*   Updated: 2017/08/01 13:13:28 by mowen            ###   ########.fr       */
+/*   Updated: 2017/08/01 19:52:03 by mowen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void		drawline(t_stor *s)
 	x = (double)s->x0;
 	y = (double)s->y0;
 	dx = s->x1 - s->x0;
-	dy = s->y3 - s->y2;
+	dy = (s->y3) - s->y2;
 	tmp = sqrt((dx * dx) + (dy * dy));
 	dx /= tmp;
 	dy /= tmp;
