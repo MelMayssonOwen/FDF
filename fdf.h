@@ -24,6 +24,8 @@
 
 typedef struct				s_stor // parse and tab creation
 {
+	int			tx;
+	int			ty;
 	int			nb_w;
 	int			len;
 	int			**tab;
