@@ -10,7 +10,7 @@
 # define GRID_SIZE	10
 # define HEIGHT_COEF	2
 
-# define COLOR		0x00FFFFFF
+# define WHITE		0x00FFFFFF
 # define RED		0x00FF0000
 # define GREEN		0x0000FF00
 # define BLUE		0x000000FF
@@ -20,6 +20,11 @@
 # define RIGHT		124
 # define UP		125
 # define DOWN		126
+# define LETTERC	8
+# define ONE		18
+# define TWO		19
+# define PLUS		24
+# define MINUS		27
 
 
 typedef struct				s_stor // parse and tab creation

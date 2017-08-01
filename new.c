@@ -6,7 +6,7 @@
 /*   By: mowen <mowen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 13:28:31 by mowen             #+#    #+#             */
-/*   Updated: 2017/08/01 19:52:03 by mowen            ###   ########.fr       */
+/*   Updated: 2017/08/02 01:07:51 by mowen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ void		drawline(t_stor *s)
 	x = (double)s->x0;
 	y = (double)s->y0;
 	dx = s->x1 - s->x0;
-	dy = (s->y3) - s->y2;
+	dy = (s->y1) - s->y0;
 	tmp = sqrt((dx * dx) + (dy * dy));
 	dx /= tmp;
 	dy /= tmp;
 	while (tmp >= 0)
 	{
-		mlx_pixel_put(s->mlx, s->win, x, y, COLOR);
+		mlx_pixel_put(s->mlx, s->win, x, y, s->color);
 		x += dx;
 		y += dy;
 		tmp--;
@@ -58,8 +58,8 @@ int	my_key_funct(int keycode, t_stor *s)
 	if (keycode == 53)
 		exit(1);
 	printf("keycode : %d\n", keycode);
-	keycode = 0;
 	s->x = 0;
+	keycode = 0;
 	return (0);
 }
 

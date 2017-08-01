@@ -6,7 +6,7 @@
 #    By: ppoursaf <ppoursaf@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/07/07 06:03:49 by ppoursaf          #+#    #+#              #
-#    Updated: 2017/08/01 01:16:47 by mowen            ###   ########.fr        #
+#    Updated: 2017/08/01 22:25:19 by mowen            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRC_PATH = ./libft/
 
 MINILIBX_PATH = ./minilibx_macos
 
-SRCS_FDF = draw.c new.c
+SRCS_FDF = newnew.c new.c
 FLAGS =  -framework OpenGL -framework AppKit -Wall -Werror -Wextra
 
 all: $(NAME)
