@@ -52,6 +52,10 @@ typedef struct				s_stor // parse and tab creation
 	int			iter;
 	int			keycode;
 	int			color;
+	int			background;
+	int			front;
+	int			win_x;
+	int			win_y;
 	int			x;
 	int			y;
 	void			*mlx;
@@ -64,5 +68,14 @@ void		clear_win(t_stor *s);
 void		size_file(char **av, t_stor *s);
 void		aff_tab(t_stor *s);
 void		create_tab(char **av, t_stor *s);
-
+int	commands(int key, t_stor *s);
+void	height(int a, t_stor *s);
+void	size(int a, t_stor *s);
+void	movement_LR(int a, t_stor *s);
+void	movement_UD(int a, t_stor *s);
+void	launch(t_stor *s);
+void	draw(t_stor *s);
+void	draw_helper(t_stor *s);
+void	pan(int a, t_stor *s);
+void	invert_colors(int a, t_stor *s);
 #endif

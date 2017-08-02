@@ -6,62 +6,11 @@
 /*   By: mowen <mowen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 13:28:31 by mowen             #+#    #+#             */
-/*   Updated: 2017/08/02 01:07:51 by mowen            ###   ########.fr       */
+/*   Updated: 2017/08/02 02:04:36 by mowen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/libft.h"
 #include "fdf.h"
-
-# include <stdio.h>
-
-void		drawline(t_stor *s)
-{
-	double	dx;
-	double	dy;
-	double	x;
-	double	y;
-	double	tmp;
-
-	x = (double)s->x0;
-	y = (double)s->y0;
-	dx = s->x1 - s->x0;
-	dy = (s->y1) - s->y0;
-	tmp = sqrt((dx * dx) + (dy * dy));
-	dx /= tmp;
-	dy /= tmp;
-	while (tmp >= 0)
-	{
-		mlx_pixel_put(s->mlx, s->win, x, y, s->color);
-		x += dx;
-		y += dy;
-		tmp--;
-	}
-}
-
-void	clear_win(t_stor *s)
-{
-	int x;
-	int y;
-
-	y = 0;
-	while (y++ <= 800)
-	{
-		x = 0;
-		while (x++ <= 1000)
-			mlx_pixel_put(s->mlx, s->win, x, y, 0x00000000);
-	}
-}
-
-int	my_key_funct(int keycode, t_stor *s)
-{
-	if (keycode == 53)
-		exit(1);
-	printf("keycode : %d\n", keycode);
-	s->x = 0;
-	keycode = 0;
-	return (0);
-}
 
 void		size_file(char **av, t_stor *s)
 {
@@ -82,18 +31,6 @@ void		size_file(char **av, t_stor *s)
 	if (close(fd) != 0)
 		ft_putnerror("file didn't close properly");
 }
-
-
-void	aff_tab(t_stor *s)
-{
-	for(int i = 0; i < s->len; i++)
-	{
-		for(int j = 0; j < s->nb_w; j++) 
-			printf("%d ", s->tab[i][j]);
-		printf("\n");
-	}
-}
-
 
 void		create_tab(char **av, t_stor *s)
 {
