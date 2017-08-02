@@ -6,7 +6,7 @@
 /*   By: mowen <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:40:48 by mowen             #+#    #+#             */
-/*   Updated: 2017/08/02 13:28:47 by mowen            ###   ########.fr       */
+/*   Updated: 2017/08/02 14:11:27 by mowen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,11 +75,16 @@ void		launch(t_stor *s)
 {
 	s->color = WHITE;
 	s->front = WHITE;
-	s->background = 0x00000000;
-	s->realstart_x = 400;
-	s->realstart_y = 400;
 	s->x_var = 20;
 	s->y_var = 10;
+	if (s->len > 100 || s->nb_w > 100)
+	{
+		s->x_var = 4;
+		s->y_var = 2;
+	}
+	s->background = 0x00000000;
+	s->realstart_x = 40;
+	s->realstart_y = (s->nb_w * s->y_var) + 40;
 	s->z = 3;
 	draw(s);
 }
@@ -100,7 +105,7 @@ int		main(int ac, char **av)
 	s->mlx = mlx_init();
 	s->win_x = 800;
 	s->win_y = 600;
-	if (s->nb_w > 100 || s->len > 80)
+	if (s->nb_w > 40 || s->len > 40)
 	{
 		s->win_x = 1600;
 		s->win_y = 800;
