@@ -78,4 +78,5 @@ void	draw(t_stor *s);
 void	draw_helper(t_stor *s);
 void	pan(int a, t_stor *s);
 void	invert_colors(int a, t_stor *s);
+void	colors(int a, t_stor *s);
 #endif

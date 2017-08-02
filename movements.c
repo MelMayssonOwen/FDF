@@ -6,15 +6,13 @@
 /*   By: mowen <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:40:48 by mowen             #+#    #+#             */
-/*   Updated: 2017/08/02 03:00:39 by mowen            ###   ########.fr       */
+/*   Updated: 2017/08/02 03:34:48 by mowen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-# include   <stdio.h>
-
-void	movement_UD(int a, t_stor *s)
+void		movement_UD(int a, t_stor *s)
 {
 	if (a == UP)
 	{
@@ -34,7 +32,7 @@ void	movement_UD(int a, t_stor *s)
 	}
 }
 
-void	movement_LR(int a, t_stor *s)
+void		movement_LR(int a, t_stor *s)
 {
 	if (a == LEFT)
 	{
@@ -56,7 +54,7 @@ void	movement_LR(int a, t_stor *s)
 		movement_UD(a, s);
 }
 
-void	size(int a, t_stor *s)
+void		size(int a, t_stor *s)
 {
 	if (a == PLUS)
 	{
@@ -78,7 +76,7 @@ void	size(int a, t_stor *s)
 	}
 }
 
-void	height(int a, t_stor *s)
+void		height(int a, t_stor *s)
 {
 	if (a == 43)
 	{
@@ -98,7 +96,7 @@ void	height(int a, t_stor *s)
 	}
 }
 
-int	commands(int key, t_stor *s)
+int		commands(int key, t_stor *s)
 {
 	if (key == 53)
 		exit(1);
@@ -110,9 +108,9 @@ int	commands(int key, t_stor *s)
 		height(key, s);
 	else if (key == 30 || key == 33)
 		pan(key, s);
-	else if (key == 8)
+	else if (key == 8 || key == 15 || key == 5 || key == 11 || key == 13 ||\
+			key == 18)
 		invert_colors(key, s);
-	printf ("key = %d\n", key);
 	key = 0;
 	s->x = 0;
 	return (0);
