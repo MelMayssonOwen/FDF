@@ -6,7 +6,7 @@
 /*   By: mowen <mowen@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/30 13:28:31 by mowen             #+#    #+#             */
-/*   Updated: 2017/08/02 13:09:35 by mowen            ###   ########.fr       */
+/*   Updated: 2017/08/02 13:23:10 by mowen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ void		size_file(char **av, t_stor *s)
 	char *line;
 
 	fd = -1;
+	s->len = 0;
+	s->nb_w = 0;
 	if (!ft_strlen(av[1]))
 		ft_putnerror("try with a real file !");
 	if ((fd = open(av[1], O_RDONLY)) == -1)
@@ -33,6 +35,8 @@ void		size_file(char **av, t_stor *s)
 		s->len++;
 		free(line);
 	}
+	if (!s->len)
+		ft_putnerror("file not conform");
 	if (close(fd) != 0)
 		ft_putnerror("file didn't close properly");
 }

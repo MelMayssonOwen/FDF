@@ -6,7 +6,7 @@
 /*   By: mowen <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/07/08 11:40:48 by mowen             #+#    #+#             */
-/*   Updated: 2017/08/02 12:51:05 by mowen            ###   ########.fr       */
+/*   Updated: 2017/08/02 13:28:47 by mowen            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int		main(int ac, char **av)
 	s->len = 0;
 	if (ac != 2)
 		ft_putnerror("wrong number of files");
-	if (av[1][0] == '/' || av[1] == NULL)
+	if (!av[1] || ft_strstr(av[1], "/dev/") || ft_strstr(av[1], "random"))
 		ft_putnerror("You don't crash me bitch");
 	size_file(av, s);
 	create_tab(av, s);
