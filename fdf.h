@@ -58,6 +58,7 @@ typedef struct				s_stor // parse and tab creation
 	int			win_y;
 	int			x;
 	int			y;
+	int			i;
 	void			*mlx;
 	void			*win;
 }					t_stor;//
